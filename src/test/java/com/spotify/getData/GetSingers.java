@@ -103,6 +103,7 @@ public class GetSingers {
 		fis1.close();
 		fis2.close();
 		
+		//Logout from Spotify Application
 		WebElement profile=driver.findElement(By.xpath("//button[@data-testid='user-widget-link']"));
 		Actions action = new Actions(driver);
 		action.moveToElement(profile).click().build().perform();
@@ -112,6 +113,8 @@ public class GetSingers {
 		a.click(logoutBtn).build().perform();
 		
 		driver.quit();
+		
+		System.out.println("Data----->to--->Excel--------///Successful");
 		
 	}
 
