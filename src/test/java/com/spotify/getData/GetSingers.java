@@ -34,11 +34,11 @@ public class GetSingers {
 
 		driver.findElement(By.xpath("//span[contains(text(),'Log in')]")).click();
 		Properties prop = new Properties();
-		FileInputStream fis =  new FileInputStream("./configAppData/spotify_common_data.properties");
+		FileInputStream fis = new FileInputStream("./configAppData/spotify_common_data.properties");
 		prop.load(fis);
 		Thread.sleep(3000);
 		String em = prop.getProperty("email");
-		driver.findElement(By.xpath("//input[@id='username']")).sendKeys(em,Keys.ENTER);
+		driver.findElement(By.xpath("//input[@id='username']")).sendKeys(em, Keys.ENTER);
 		Thread.sleep(10000);
 
 		driver.findElement(By.xpath("//input[@placeholder='What do you want to play?']")).sendKeys("Artists",
@@ -58,7 +58,7 @@ public class GetSingers {
 
 		FileInputStream fis2 = new FileInputStream("./testData/Results.xlsx");
 		Workbook wb2 = WorkbookFactory.create(fis2);
-
+//Get each singer name
 		for (int i = 4; i < 7; i++) {
 
 			String singer = wb.getSheet("search").getRow(i).getCell(0).getStringCellValue();
@@ -75,7 +75,7 @@ public class GetSingers {
 			if (sh2 == null) {
 				sh2 = wb2.createSheet(singer);
 			}
-
+//Get each song name and views and write to Excel
 			for (int j = 0; j < songNames.size(); j++) {
 
 				String song = songNames.get(j).getText();
@@ -102,20 +102,22 @@ public class GetSingers {
 		wb2.close();
 		fis1.close();
 		fis2.close();
-		
-		//Logout from Spotify Application
-		WebElement profile=driver.findElement(By.xpath("//button[@data-testid='user-widget-link']"));
+
+		// Logout from Spotify Application
+		WebElement profile = driver.findElement(By.xpath("//button[@data-testid='user-widget-link']"));
 		Actions action = new Actions(driver);
 		action.moveToElement(profile).click().build().perform();
-		
-		WebElement logoutBtn= driver.findElement(By.xpath("//button[@data-testid='user-widget-dropdown-logout']/descendant::span"));
+
+		WebElement logoutBtn = driver
+				.findElement(By.xpath("//button[@data-testid='user-widget-dropdown-logout']/descendant::span"));
 		Actions a = new Actions(driver);
 		a.click(logoutBtn).build().perform();
-		
+
+		// Close the Browser
 		driver.quit();
-		
+
 		System.out.println("Data----->to--->Excel--------///Successful");
-		
+
 	}
 
 }
