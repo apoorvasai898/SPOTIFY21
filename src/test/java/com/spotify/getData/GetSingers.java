@@ -38,7 +38,7 @@ public class GetSingers {
 		prop.load(fis);
 		Thread.sleep(3000);
 		String em = prop.getProperty("email");
-		driver.findElement(By.xpath("//input[@id='username']")).sendKeys("testingas989@gmail.com",Keys.ENTER);
+		driver.findElement(By.xpath("//input[@id='username']")).sendKeys(em,Keys.ENTER);
 		Thread.sleep(10000);
 
 		driver.findElement(By.xpath("//input[@placeholder='What do you want to play?']")).sendKeys("Artists",
